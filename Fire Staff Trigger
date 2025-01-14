@@ -1,0 +1,17 @@
+extends Sprite2D
+#Staff Fire 
+
+var firebolt_path = preload("firebolt.tscn")
+
+func _physics_process(_delta):
+	look_at(get_global_mouse_position())
+	if Input.is_action_just_pressed("ui_space"):
+		_fire()
+	
+
+func _fire():
+	var firebolt = firebolt_path.instantiate()
+	firebolt.direction = rotation
+	firebolt.spawnpos = $".".global_position
+	firebolt.spawnrotate = global_rotation
+	get_parent().add_child(firebolt)
